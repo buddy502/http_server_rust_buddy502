@@ -1,6 +1,6 @@
 # Rust HTTP Server
 
-<p color=red><b>Rules</b></p>
+<p color=#FF00FF><b>Rules</b></p>
 <ul>
     <li>No AI</li>
     <li>Refrain from using Google</li>
