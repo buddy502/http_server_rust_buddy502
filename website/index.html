@@ -14,14 +14,20 @@
          <div id="chatboxes"></div>
 
          <div id="chatinsert">
-            <textarea rows="1" maxlength="500"></textarea>
+            <textarea class="textboxarea" rows="1" maxlength="500"></textarea>
          </div>
       </div>
 
       <div id="chatuserheader">
          <h1>Chat Users</h1>
-         <div id="userboxes"></div>
-
+         <div id="userboxes">
+            <form action="/users" method="post"></form>
+         </div>
+         <div id="userinsert">
+            <form class="usersform" action="/users" method="get">
+               <textarea class="textboxarea" rows="1" maxlength="30"></textarea>
+            </form>
+         </div>
       </div>
    </div>
 </body>
