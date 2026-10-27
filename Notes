@@ -1,0 +1,42 @@
+General thoughts on the project and original ideas.
+
+Create client and server
+
+Source: https://www.youtube.com/watch?v=wW2A5SZ3GkI
+What is HTTP? How the Internet Works! #1
+
+HTTP request for client and server
+
+HTTP Request
+- Start Line
+   - Method, usually GET or POST
+   - Target, file
+   - Version, the http version, like HTTP/1.0
+- Headers
+   - addition information, e.g. User-Agent: Mozilla/5.0
+- Body 
+   - Typically what the server uses to send back the files
+   - Request here would usually be like None for GET
+
+HTTP Response
+- Start Line
+   - Version, Same http version
+   - Status Codes, like Error codes or OK
+   - Status Text
+- Headers
+   - Server information for what was requested
+- Body
+   - File
+
+HTTP is called a STATELESS protocol
+   - When client sends request and server sends response
+      - There isn't a maintained connection, refreshing needs another request
+   - TCP/IP protocol
+   - 3 parts to request/response
+
+
+I'm using actix_web's framework because it looks simple
+
+According to actix_web:
+   "Request handlers use async functions that accept zero or more parameters"
+   - Using asynchronous functions allows users to do multiple things at once

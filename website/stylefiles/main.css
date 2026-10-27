@@ -1,0 +1,75 @@
+body {
+   margin: 0;
+   font-family: "Times New Roman", sans-serif;
+   font-size: 1rem;
+   background-color: #FFFFFF;
+}
+
+#maingrid {
+   display: grid;
+   width: 100vw;
+   height: 100vh;
+
+   font-weight: bold;
+   grid-template-columns: 3fr 1fr;
+   grid-template-rows: 1fr;
+
+   gap: 10px;
+   padding: 10px;
+   box-sizing: border-box;
+}
+
+#maingrid > #chatboxheader,
+#maingrid > #chatuserheader {
+   display: flex;
+   flex-direction: column;
+   min-height: 0;
+}
+
+#maingrid > #chatboxheader {
+   border: 1px solid black;
+   border-right: 2px solid black;
+}
+
+#maingrid > #chatuserheader {
+   border: 1px solid black;
+   border-left: 2px solid black;
+}
+
+#maingrid h1 {
+   padding: 10px;
+   display: flex;
+   justify-content: center;
+   margin: 0;
+   border-bottom: 1px solid black;
+}
+
+#chatboxes,
+#userboxes {
+   display: flex;
+   flex-direction: column;
+   flex: 1;
+   overflow-y: auto;
+}
+
+#chatinsert,
+#userinsert {
+   display: flex;
+   padding: 10px;
+   margin: 0;
+}
+
+#chatinsert textarea {
+   flex: 1;
+   width: 100%;
+   min-width: 0;
+   padding: 0.5rem;
+   box-sizing: border-box;
+   font-family: inherit;
+   font-size: inherit;
+   resize: none;
+   max-height: 8rem;
+   overflow-y: auto;
+   overflow-wrap: anywhere;
+   field-sizing: content;
+}

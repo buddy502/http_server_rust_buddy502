@@ -1,0 +1,9 @@
+/home/buddy/projects/http_server_rust_buddy502/src/target/debug/deps/derive_more-9b5b93ffb14b8bbc.d: /home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_more-2.1.1/src/lib.rs /home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_more-2.1.1/src/as.rs /home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_more-2.1.1/src/as_dyn_error.rs
+
+/home/buddy/projects/http_server_rust_buddy502/src/target/debug/deps/libderive_more-9b5b93ffb14b8bbc.rlib: /home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_more-2.1.1/src/lib.rs /home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_more-2.1.1/src/as.rs /home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_more-2.1.1/src/as_dyn_error.rs
+
+/home/buddy/projects/http_server_rust_buddy502/src/target/debug/deps/libderive_more-9b5b93ffb14b8bbc.rmeta: /home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_more-2.1.1/src/lib.rs /home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_more-2.1.1/src/as.rs /home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_more-2.1.1/src/as_dyn_error.rs
+
+/home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_more-2.1.1/src/lib.rs:
+/home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_more-2.1.1/src/as.rs:
+/home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_more-2.1.1/src/as_dyn_error.rs:

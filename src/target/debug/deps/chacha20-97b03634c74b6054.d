@@ -1,0 +1,12 @@
+/home/buddy/projects/http_server_rust_buddy502/src/target/debug/deps/chacha20-97b03634c74b6054.d: /home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/chacha20-0.10.2/src/lib.rs /home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/chacha20-0.10.2/src/variants.rs /home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/chacha20-0.10.2/src/backends.rs /home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/chacha20-0.10.2/src/rng.rs /home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/chacha20-0.10.2/src/../README.md /home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/chacha20-0.10.2/src/backends/soft.rs /home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/chacha20-0.10.2/src/backends/avx2.rs /home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/chacha20-0.10.2/src/backends/sse2.rs
+
+/home/buddy/projects/http_server_rust_buddy502/src/target/debug/deps/libchacha20-97b03634c74b6054.rmeta: /home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/chacha20-0.10.2/src/lib.rs /home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/chacha20-0.10.2/src/variants.rs /home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/chacha20-0.10.2/src/backends.rs /home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/chacha20-0.10.2/src/rng.rs /home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/chacha20-0.10.2/src/../README.md /home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/chacha20-0.10.2/src/backends/soft.rs /home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/chacha20-0.10.2/src/backends/avx2.rs /home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/chacha20-0.10.2/src/backends/sse2.rs
+
+/home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/chacha20-0.10.2/src/lib.rs:
+/home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/chacha20-0.10.2/src/variants.rs:
+/home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/chacha20-0.10.2/src/backends.rs:
+/home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/chacha20-0.10.2/src/rng.rs:
+/home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/chacha20-0.10.2/src/../README.md:
+/home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/chacha20-0.10.2/src/backends/soft.rs:
+/home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/chacha20-0.10.2/src/backends/avx2.rs:
+/home/buddy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/chacha20-0.10.2/src/backends/sse2.rs:
