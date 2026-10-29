@@ -1,0 +1,2 @@
+fn({type error}) -> impl std::future::Future<Output = Result<(), std::io::Error>> {user_login_connection}
+fn({type error}) -> impl std::future::Future<Output = Result<(), std::io::Error>> {user_login_connection}: HttpServiceFactory

@@ -1,8 +1,12 @@
+:root {
+   --font-color: #FFFFFF;
+}
+
 body {
    margin: 0;
    font-family: "Times New Roman", sans-serif;
    font-size: 1rem;
-   background-color: #FFFFFF;
+   background-color: #202020;
 }
 
 #maingrid {
@@ -27,21 +31,22 @@ body {
 }
 
 #maingrid > #chatboxheader {
-   border: 1px solid black;
-   border-right: 2px solid black;
+   border: 1px solid white;
+   border-right: 2px solid white;
 }
 
 #maingrid > #chatuserheader {
-   border: 1px solid black;
-   border-left: 2px solid black;
+   border: 1px solid white;
+   border-left: 2px solid white;
 }
 
 #maingrid h1 {
+   color: var(--font-color);
    padding: 10px;
    display: flex;
    justify-content: center;
    margin: 0;
-   border-bottom: 1px solid black;
+   border-bottom: 1px solid white;
 }
 
 #userboxes,
@@ -59,16 +64,38 @@ body {
    margin: 0;
 }
 
-#userinsert .usersform {
-  width: 100%;
-  margin: 0;
+#userinsert button {
+   border-radius: 5px;
+   font-weight: bold;
+   border: 2px solid white;
+   background-color: #A0A0A0;
 }
-#userinsert .usersform {
-  width: 100%;
-  margin: 0;
+#userinsert button:hover {
+   background-color: #A9A9A9;
+   transform: scale(0.95)
 }
 
-.textboxarea {
+#userinsert #userform {
+   display: flex;
+   gap: 5px;
+   width: 100%;
+   margin: 0;
+}
+#textboxuser {
+   display: block;
+   width: 100%;
+   padding: 0.5rem;
+   box-sizing: border-box;
+   font-family: inherit;
+   font-size: 1rem;
+   resize: none;
+   max-height: 8rem;
+   overflow-y: auto;
+   overflow-wrap: anywhere;
+   field-sizing: content;
+}
+
+#textboxchat {
    display: block;
    width: 100%;
    padding: 0.5rem;
@@ -85,4 +112,12 @@ body {
 #userboxes {
    display: flex;
    flex-direction: column;
+}
+
+.userbox {
+  display: inline-block;
+  padding: 4px 10px;
+  margin: 4px;
+  border: 1px solid #888;
+  border-radius: 6px;
 }
