@@ -1,2 +1,0 @@
-fn(Data<std::sync::Mutex<HashSet<HashMap<u16, String>>>>, Form<UserForm>) -> impl std::future::Future<Output = impl Responder> {user_login_connection}
-fn(Data<std::sync::Mutex<HashSet<HashMap<u16, String>>>>, Form<UserForm>) -> impl std::future::Future<Output = impl Responder> {user_login_connection}: HttpServiceFactory

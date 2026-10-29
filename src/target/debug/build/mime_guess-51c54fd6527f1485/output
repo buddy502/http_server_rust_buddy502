@@ -1,1 +1,0 @@
-cargo:rustc-env=MIME_TYPES_GENERATED_PATH=/home/buddy/projects/http_server_rust_buddy502/src/target/debug/build/mime_guess-51c54fd6527f1485/out/mime_types_generated.rs
