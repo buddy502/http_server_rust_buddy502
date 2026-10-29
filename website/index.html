@@ -1,34 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Chat HTTP Server</title>
-   <link rel="stylesheet" href="./stylefiles/main.css">
-</head>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Chat HTTP Server</title>
+      <link rel="stylesheet" href="./stylefiles/main.css">
+   </head>
 
-<body>
-   <div id="maingrid">
-      <div id="chatboxheader">
-         <h1>Chat Box</h1>
-         <div id="chatboxes"></div>
 
-         <div id="chatinsert">
-            <textarea class="textboxarea" rows="1" maxlength="500"></textarea>
+   <body>
+      <div id="maingrid">
+         <div id="chatboxheader">
+            <h1>Chat Box</h1>
+            <div id="chatboxes"></div>
+            <div id="chatinsert">
+               <textarea id="textboxchat" rows="1" maxlength="500"></textarea>
+            </div>
+         </div>
+
+         <div id="chatuserheader">
+            <h1>Chat Users</h1>
+            <div id="userboxes"></div>
+            <div id="userinsert">
+               <form id="userform" action="/usernames" method="post">
+                  <!-- a form requires an action to be the same as function used and
+                     name to be the same as struct variable -->
+                     <textarea id="textboxuser" name="username" rows="1" maxlength="30"></textarea>
+                     <button type="submit">ENTER</button>
+               </form>
+            </div>
          </div>
       </div>
+   </body>
 
-      <div id="chatuserheader">
-         <h1>Chat Users</h1>
-         <div id="userboxes">
-            <form action="/users" method="post"></form>
-         </div>
-         <div id="userinsert">
-            <form class="usersform" action="/users" method="get">
-               <textarea class="textboxarea" rows="1" maxlength="30"></textarea>
-            </form>
-         </div>
-      </div>
-   </div>
-</body>
+   <!-- using claude cuz javascript is bunz and idk how to use it -->
+   <script>
+      const form = document.getElementById("userform");
+      const input = document.getElementById("textboxuser");
+      const userboxes = document.getElementById("userboxes");
+
+      input.addEventListener("keydown", async (e) => {
+         if (e.key === "Enter") e.preventDefault();
+      });
+
+      form.addEventListener("submit", async (e) => {
+         e.preventDefault();
+
+         const name = input.value.trim();
+         if (!name) return;
+
+         const res = await fetch("/usernames", {
+            method: "POST",
+            body: new URLSearchParams({ username: name }),
+         });
+
+         if (res.ok) {
+            const box = document.createElement("div");
+            box.className = "userbox";
+            box.textContent = name;
+            userboxes.appendChild(box);
+
+            input.value = "";   // clear the textbox
+            input.focus();
+         }
+      });
+   </script>
+
 </html>
