@@ -1,2 +1,4 @@
     Checking src v0.1.0 (/home/buddy/projects/http_server_rust_buddy502/src)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.34s
+error: could not compile `src` (bin "src" test) due to 2 previous errors; 1 warning emitted
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `src` (bin "src") due to 2 previous errors; 1 warning emitted
