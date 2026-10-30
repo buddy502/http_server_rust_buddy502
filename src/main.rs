@@ -36,13 +36,14 @@ struct ChatText {
 }
 
 // get usernames for chat box
-#[get("/usernames")]
-async fn get_usernames() -> impl Responder {
+#[get("/usernames/{username}")]
+async fn get_usernames(user: UserID, query: web::Query<UserForm>) -> impl Responder {
+    HttpResponse::Created().finish()
 }
 
 // type in chat if you're hearing me iynyn
 #[post("/chat")]
-async fn type_in_chat(chattext: Text, user: UserID, form: web::Form<ChatText>) -> impl Responder {
+async fn type_in_chat(chattext: Text, form: web::Form<ChatText>) -> impl Responder {
     let usertext: String = form.text.to_string();
     if usertext.is_empty() {
         return HttpResponse::Ok().finish()
@@ -82,13 +83,10 @@ async fn user_login_connection(users: UserID, form: web::Form<UserForm>) -> impl
                     e.insert(username.to_string());
                     return HttpResponse::Created().body("User added");
                 }
-            };
+            }
         }
         Err(_) => return HttpResponse::BadRequest().body("id must be a number"),
     }
-
-
-    HttpResponse::Created().finish()
 }
 
 #[actix_web::main]
