@@ -6,7 +6,13 @@ use std::collections::hash_map::Entry;
 
 use actix_files::Files;
 use actix_web::{get, post, App, HttpResponse, HttpServer, web, Responder};
+
+use actix_web::cookie::Key;
+use actix_session::{Session, SessionMiddleware, storage::CookieSessionStore};
+
 use serde::Deserialize;
+use serde_json;
+use dotenvy::dotenv;
 
 /*
     claude said the mutex is so there aren't multiple copies being worked on
@@ -18,12 +24,12 @@ use serde::Deserialize;
     A mutex makes it so that two threads can't access the same memory
 */
 // long ahh type
-type UserID  = web::Data<Mutex<HashMap<u16, String>>>;
+type UserID  = web::Data<Mutex<HashSet<(String, u16)>>>;
 // use String for user, "User#0000" so I can get user and id if needed
 type Text    = web::Data<Mutex<HashMap<String, String>>>;
 
 // required to convert JSON to struct
-#[derive(Deserialize)]
+#[derive(Debug, Deserialize)]
 struct UserForm {
     id: u16,
     username: String, // username is the full username including id
@@ -35,10 +41,16 @@ struct ChatText {
     text: String,
 }
 
-// get usernames for chat box
-#[get("/usernames/{username}")]
-async fn get_usernames(user: UserID, query: web::Query<UserForm>) -> impl Responder {
-    HttpResponse::Created().finish()
+fn get_secret_key() -> Key {
+    let secret = std::env::var("SESSION_KEY")
+        .expect("SESSION_KEY must be set, 'SESSION_SECRET=$(openssl rand -hex 64)'");
+    // Key::from requires at least 64 bytes
+    Key::from(secret.as_bytes())
+}
+
+#[get("/usernames")]
+async fn get_usernames(query: web::Query<UserForm>) -> String {
+    format!("id: {}, username: {}", query.id, query.username)
 }
 
 // type in chat if you're hearing me iynyn
@@ -58,51 +70,52 @@ async fn type_in_chat(chattext: Text, form: web::Form<ChatText>) -> impl Respond
 
 #[post("/usernames")]
 async fn user_login_connection(users: UserID, form: web::Form<UserForm>) -> impl Responder {
-    let full_username: &str = form.username.trim();
+    let username = form.username.trim();
+    let id = form.id;
 
-    if full_username.is_empty() {
-        return HttpResponse::BadRequest().body("username required");
-    } else if full_username.split('#').count() >= 2 {
-        return HttpResponse::BadRequest().body("Wrong format for username");
-    } else if full_username.len() <= 5 {
-        // username requires at least a letter, 4 digits, and #
-        return HttpResponse::BadRequest().body("username too short");
+    if username.is_empty() || username.contains('#') {
+        return HttpResponse::BadRequest().body("invalid username");
+    }
+    
+    if id.to_string().len() != 4 {
+        return HttpResponse::BadRequest().body("Invalid length of ID")
     }
 
-    // split at # then id is #0000 then take number after #
-    let user_len = full_username.len() - 5;
-    let (username, user_id) = full_username.split_at(user_len);
-    let id: &str = &user_id[1..user_id.len()];
+    let mut set = users.lock().unwrap();
 
-    match id.parse::<u16>() {
-        Ok(id) => {
-            let mut map = users.lock().unwrap();
-            match map.entry(id) {
-                Entry::Occupied(_) => HttpResponse::Conflict().body("id already exists"),
-                Entry::Vacant(e) => {
-                    e.insert(username.to_string());
-                    return HttpResponse::Created().body("User added");
-                }
-            }
-        }
-        Err(_) => return HttpResponse::BadRequest().body("id must be a number"),
+    if set.insert((username.to_string(), id)) {
+        return HttpResponse::Created().finish();
+    } else {
+        return HttpResponse::Conflict().body("Username already exists"); // never gotta give red error cuz red error bad :)
     }
 }
 
+//#[delete("/usernames")]
+//async fn delete_user(session: Session) -> HttpResponse {
+//    HttpResponse::Ok().finish()
+//}
+
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    // arguments for different port e.g. cargo run -- 3030
     let args: Vec<String> = env::args().collect();
     let port_browser: u16 = args.get(2)
         .and_then(|p| p.parse().ok())
         .unwrap_or(8080);
 
     // same type as Users so .app_data can ask handlers for it later
-    let users = web::Data::new(Mutex::new(HashSet::<String>::new()));
+    let users: UserID = web::Data::new(Mutex::new(HashSet::new()));
+
+    dotenv().expect(".env file doesn't exist");
+    let session_key = get_secret_key();
 
     // move takes ownership of users so it doesn't dangle after main closes
     HttpServer::new(move || {
         App::new()
+            .wrap(SessionMiddleware::new(CookieSessionStore::default(), session_key.clone()))
+            .service(get_usernames)
             .app_data(users.clone())
+            .service(type_in_chat)
             .service(user_login_connection)
             .service(Files::new("/", "../website").index_file("index.html"))
     })

@@ -49,9 +49,18 @@
          const name = input.value.trim();
          if (!name) return;
 
+         const hash = name.lastIndexOf("#");
+         if (hash === -1) {
+            alert("Use the format: Username#1234");
+            return;
+         }
+
+         const username = name.slice(0, hash);
+         const user_id  = name.slice(hash + 1);
+
          const res = await fetch("/usernames", {
             method: "POST",
-            body: new URLSearchParams({ username: name }),
+            body: new URLSearchParams({ username: username, id: user_id}),
          });
 
          if (res.ok) {
@@ -60,8 +69,11 @@
             box.textContent = name;
             userboxes.appendChild(box);
 
-            input.value = "";   // clear the textbox
+            input.value = "";
             input.focus();
+         } else if (!res.ok) {
+            alert(await res.text());
+            return;
          }
       });
    </script>
